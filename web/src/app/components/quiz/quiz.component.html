@@ -1,0 +1,59 @@
+<div class="bg-white rounded-lg shadow-lg overflow-hidden mt-8">
+    <div class="bg-green-600 px-6 py-4">
+        <h3 class="text-xl font-bold text-white">Knowledge Check</h3>
+    </div>
+
+    <div class="p-6 space-y-8">
+        @for (q of questions; track $index; let i = $index) {
+        <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="font-medium text-lg text-gray-900 mb-4">{{ i + 1 }}. {{ q.question }}</p>
+
+            <div class="space-y-2">
+                @for (option of q.options; track $index; let optIndex = $index) {
+                <button class="w-full text-left px-4 py-3 rounded border transition-colors relative"
+                    [class.bg-blue-50]="selectedAnswers[i] === optIndex && !isSubmitted"
+                    [class.border-blue-300]="selectedAnswers[i] === optIndex && !isSubmitted"
+                    [class.bg-green-100]="isSubmitted && q.correct_answer === optIndex"
+                    [class.border-green-500]="isSubmitted && q.correct_answer === optIndex"
+                    [class.text-green-800]="isSubmitted && q.correct_answer === optIndex"
+                    [class.bg-red-100]="isSubmitted && selectedAnswers[i] === optIndex && selectedAnswers[i] !== q.correct_answer"
+                    [class.border-red-500]="isSubmitted && selectedAnswers[i] === optIndex && selectedAnswers[i] !== q.correct_answer"
+                    [class.text-red-800]="isSubmitted && selectedAnswers[i] === optIndex && selectedAnswers[i] !== q.correct_answer"
+                    (click)="selectAnswer(i, optIndex)" [disabled]="isSubmitted">
+
+                    {{ option }}
+
+                    @if (isSubmitted && q.correct_answer === optIndex) {
+                    <span class="absolute right-4 text-green-600 font-bold">✓</span>
+                    }
+                    @if (isSubmitted && selectedAnswers[i] === optIndex && selectedAnswers[i] !== q.correct_answer) {
+                    <span class="absolute right-4 text-red-600 font-bold">✗</span>
+                    }
+                </button>
+                }
+            </div>
+
+            @if (isSubmitted) {
+            <div class="mt-3 text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                <strong>Explanation:</strong> {{ q.explanation }}
+            </div>
+            }
+        </div>
+        }
+
+        <div class="pt-4 text-center">
+            @if (!isSubmitted) {
+            <button (click)="submit()"
+                class="bg-green-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-lg"
+                [disabled]="!allAnswered()">
+                Submit Answers
+            </button>
+            } @else {
+            <div class="text-2xl font-bold mb-4">
+                Score: <span class="text-blue-600">{{ score }}</span> / {{ questions.length }}
+            </div>
+            <button (click)="reset()" class="text-blue-600 hover:underline">Try Another Video</button>
+            }
+        </div>
+    </div>
+</div>

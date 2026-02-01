@@ -1,0 +1,64 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env
+.env.local
+
+# Node / Angular
+node_modules/
+dist/
+out-tsc/
+.angular/
+.sass-cache/
+connect.lock
+coverage/
+npm-debug.log
+yarn-error.log
+testem.log
+/reports
+/pids
+/logs
+/pid
+/seed
+*.lcov
+.nyc_output
+
+# Temporary files
+tmp/
+temp/

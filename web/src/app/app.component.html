@@ -1,0 +1,24 @@
+<div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <header class="max-w-4xl mx-auto mb-12 text-center">
+        <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight">AI Learning Assistant</h1>
+        <p class="mt-2 text-lg text-gray-600">Turn any YouTube video into a personalized lesson.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-8">
+
+        <app-youtube-input (analyze)="onAnalyze($event)" #inputComponent></app-youtube-input>
+
+        @if (error) {
+        <div class="p-4 bg-red-100 text-red-700 rounded-lg border border-red-200">
+            {{ error }}
+        </div>
+        }
+
+        @if (analysisResult()) {
+        <app-explanation [text]="analysisResult()!.explanation"></app-explanation>
+        <app-key-points [points]="analysisResult()!.key_points"></app-key-points>
+        <app-scenarios [scenarios]="analysisResult()!.scenarios"></app-scenarios>
+        <app-quiz [questions]="analysisResult()!.quiz"></app-quiz>
+        }
+    </main>
+</div>
