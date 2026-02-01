@@ -85,6 +85,24 @@ npm start
 ```
 The application will be available at `http://localhost:4200`.
 
+### 4. Running with Docker
+
+Alternatively, you can run the application using Docker.
+
+**API (Backend):**
+Build and run the API container on port 8000. You must provide your `GOOGLE_API_KEY` (either via `.env` file or `-e` flag).
+```bash
+docker build -t learning-ai-api ./api
+docker run -p 8000:8000 --env-file ./api/.env learning-ai-api
+```
+
+**Web (Frontend):**
+Build and run the Web container on port 4200.
+```bash
+docker build -t learning-ai-web ./web
+docker run -p 4200:80 learning-ai-web
+```
+
 ## Usage
 
 1. Start both the Backend and Frontend servers.
