@@ -36,6 +36,7 @@ MANIFEST
 # Virtual Environments
 venv/
 .venv/
+.venev/
 env/
 .env
 .env.local
